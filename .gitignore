@@ -1,52 +1,39 @@
-# Prerequisites
-*.d
 
-# Object files
-*.o
-*.ko
+#Ignore thumbnails created by Windows
+Thumbs.db
+#Ignore files built by Visual Studio
 *.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
 *.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
 *.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+[Bb]in
+[Dd]ebug*/
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+.vs/
+.svn/
+licenses.licx
+#Nuget packages folder
+packages/
+/Master/Adss.Addons.ToolKits/Properties/licenses.licx
+/Tools/Adss.AssemblyWizard.Tools/Properties/licenses.licx
+.config
+*.log
+/Bin/x64/configs/
+/Bin/x64/configs/filecompare
+*.orig
