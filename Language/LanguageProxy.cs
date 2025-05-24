@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
-using System.Windows.Controls;
+using System.Windows.Controls; 
 using System.Xml.Linq;
+using System.Threading;
 
 namespace Language
 {
@@ -117,7 +118,8 @@ namespace Language
                             KEY TEXT NOT NULL,
                             ZHCN TEXT NOT NULL,
                             EN TEXT)";
-                new SQLiteCommand(sql, conn).ExecuteNonQuery();
+                var cmd = new SQLiteCommand(sql, conn);
+                cmd.ExecuteNonQuery();
             }
         }
         static Dictionary<string, string> GetLanguageDict(LanguageType lang)
@@ -130,13 +132,13 @@ namespace Language
                 switch (lang)
                 {
                     case LanguageType.English:
-                        sql = "SELECT (KEY,ZHCN) FROM Language";
+                        sql = "SELECT \"KEY\",\"EN\" FROM Language";
                         break;
                     case LanguageType.Chinese:
-                        sql = "SELECT (KEY,EN) FROM Language";
+                        sql = "SELECT \"KEY\",\"ZHCN\" FROM Language";
                         break;
                     default:
-                        sql = "SELECT (KEY,ZHCN) FROM Language";
+                        sql = "SELECT \"KEY\",\"ZHCN\" FROM Language";
                         break;
                 }
                 using (var reader = new SQLiteCommand(sql, conn).ExecuteReader())
@@ -155,7 +157,7 @@ namespace Language
             using (var conn = new SQLiteConnection(connectionString))
             {
                 conn.Open();
-                string sql = $"INSERT INTO Language (KEY, ZHCN) VALUES ({key}, {value})";
+                string sql = $"INSERT INTO Language ('KEY', 'ZHCN') VALUES ('{key}','{value}')";
                 var cmd = new SQLiteCommand(sql, conn);
                 cmd.ExecuteNonQuery();
             }

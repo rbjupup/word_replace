@@ -1,0 +1,1 @@
+getfonthttp = 'http://www.ssjjss.com/?char=YangKunZhang&font=%E9%92%9F%E9%BD%90%E5%90%B4%E5%98%89%E7%9D%BF%E6%89%8B%E5%86%99%E5%AD%97&layout=1&size=81&hspace=0&vspace=0&hpadding=0&vpadding=0&forecolor=%23000000&backcolor=%23ffffff&effect=none'

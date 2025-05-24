@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Controls.SunFlowerTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920"
+             Background="{DynamicResource CommBackground}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Theme/ThemeDefault.xaml" />
+                <ResourceDictionary Source="/Theme/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="128"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+              Background="{DynamicResource CommBackground}"
+              ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="244"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="/logo.png" Width="244" Height="66" Margin="0,0,0,14"></Image>
+            <TextBlock Grid.Column="1"     Margin="8 18 0 0"
+                       Height="39"
+                        VerticalAlignment="Top"
+                         HorizontalAlignment="Left"
+                         FontSize="28px"
+                    Foreground="White">Word文字替换软件 [V2.0.0]</TextBlock>
+            <Grid Grid.Column="2" Background="{DynamicResource CommBackground}">
+                <StackPanel Orientation="Horizontal">
+                    <Button 
+                        Width="32px"
+                        Height="32px"
+                        Margin="8,5"
+                        Style="{DynamicResource IconButton}">
+                        <Border CornerRadius="5">
+                            <Path Margin="0"
+                              Data="{DynamicResource Avatar}"
+                              Fill="Transparent"
+                              Stroke="White"/>
+                        </Border>
+                    </Button>
+                    <Button 
+                        Command="{Binding MiniusCommand}"
+                        Margin="8,5" Width="32px" Height="32px" Style="{DynamicResource IconButton}">
+                        <Border Width="32px" Height="32px" CornerRadius="0">
+                            <Path Width="32px" Height="32px" 
+                              Data="{DynamicResource Min}" 
+                              Fill="White" 
+                              Stroke="White"/>
+                        </Border>
+                    </Button>
+                    <Button 
+                        Width="35"
+                        Height="35"
+                        Margin="8,5"
+                        Command ="{Binding CloseCommand}"
+                        Style="{DynamicResource IconButton}">
+                        <Border  
+                        Margin="8,5" CornerRadius="0">
+                            <Path
+                              Data="{DynamicResource Delete}" 
+                              Fill="White" 
+                              Stroke="White"
+                              Stretch="Uniform"
+                                  />
+                        </Border>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Background="{DynamicResource CommBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1">
+                <ListBox ItemsSource="{Binding SunFlowerBtnItems}"
+                 SelectedItem="{Binding selectItem, Mode=TwoWay}" 
+                 ItemContainerStyle="{StaticResource MenuButtonStyle}"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 SelectionMode="Single">
+                </ListBox>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Row="1" Grid.Column="1">
+            <ContentControl Content="{Binding CurrentView}"/>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="word_replace.View.WordItemEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:word_replace.View"
+             mc:Ignorable="d" 
+             Background="White" 
+             xmlns:language="clr-namespace:Language;assembly=Language"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid Margin="20" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        
+        <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBlock FontSize="25"
+                       Background="#E5EEFA" Foreground="#2F80ED"
+                   TextAlignment="Right" VerticalAlignment="Center"
+            Text="{language:SRT Key=WordItemEditor_FileName_Text,DefaultValue=文件名称:}"/>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBox Text="{Binding FileName,Mode=TwoWay}" IsEnabled="False" BorderBrush="Transparent" FontSize="25"></TextBox>
+        </Border>
+        
+        
+        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBlock FontSize="25"
+                       Background="#E5EEFA" Foreground="#2F80ED"
+                   TextAlignment="Right" VerticalAlignment="Center"
+            Text="{language:SRT Key=WordItemEditor_CreateDate_Text,DefaultValue=创建日期:}"/>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBox Text="{Binding CreateDate,Mode=TwoWay}" IsEnabled="False" BorderBrush="Transparent" FontSize="25"></TextBox>
+        </Border>
+        
+        
+        <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBlock FontSize="25"
+                       Background="#E5EEFA" Foreground="#2F80ED"
+                   TextAlignment="Right" VerticalAlignment="Center"
+            Text="{language:SRT Key=WordItemEditor_CompanyName_And_ID_Text,DefaultValue=公司中文名称与ID:}"/>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBox Text="{Binding CompanyName_ZHCN,Mode=TwoWay}"  BorderBrush="Transparent" FontSize="25"></TextBox>
+        </Border>
+        
+        
+        <Border Grid.Row="3" Grid.Column="0" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBlock FontSize="25"
+                       Background="#E5EEFA" Foreground="#2F80ED"
+                   TextAlignment="Right" VerticalAlignment="Center"
+            Text="{language:SRT Key=WordItemEditor_CompanyLegalPerson_Text,DefaultValue=法人名称:}"/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="1" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBox Text="{Binding CompanyLegalPerson,Mode=TwoWay}" BorderBrush="Transparent" FontSize="25"></TextBox>
+        </Border>
+        
+        
+        <Border Grid.Row="4" Grid.Column="0" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBlock FontSize="25"
+                       Background="#E5EEFA" Foreground="#2F80ED"
+                   TextAlignment="Right" VerticalAlignment="Center"
+            Text="{language:SRT Key=WordItemEditor_CompanyName_Text,DefaultValue=公司名称:}"/>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="1" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBox Text="{Binding CompanyName,Mode=TwoWay}" BorderBrush="Transparent" FontSize="25"></TextBox>
+        </Border>
+
+
+        <Border Grid.Row="5" Grid.Column="0" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBlock FontSize="25"
+                       Background="#E5EEFA" Foreground="#2F80ED"
+                   TextAlignment="Right" VerticalAlignment="Center"
+            Text="{language:SRT Key=WordItemEditor_EmailAddress_Text,DefaultValue=Email:}"/>
+        </Border>
+        <Border Grid.Row="5" Grid.Column="1" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBox Text="{Binding EmailAddress,Mode=TwoWay}" BorderBrush="Transparent" FontSize="25"></TextBox>
+        </Border>
+
+
+        <Border Grid.Row="6" Grid.Column="0" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBlock FontSize="25"
+                       Background="#E5EEFA" Foreground="#2F80ED"
+                   TextAlignment="Right" VerticalAlignment="Center"
+            Text="{language:SRT Key=WordItemEditor_PhoneNumber_Text,DefaultValue=手机号码:}"/>
+        </Border>
+        <Border Grid.Row="6" Grid.Column="1" BorderThickness="1" BorderBrush="#F5F7F8">
+            <TextBox Text="{Binding PhoneNumber,Mode=TwoWay}" BorderBrush="Transparent" FontSize="25"></TextBox>
+        </Border>
+
+        <StackPanel Grid.Row="7"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal" HorizontalAlignment="Right"
+                    Margin="10">
+            <Button Name="BtnOk"
+            Width="80"
+            Height="36"
+            Margin="2,2,24,2"
+            Click="BtnOk_Click"
+                    Background="AliceBlue"
+            Content="{language:SRT Key=WordItemEditor_OK_Text,
+                               DefaultValue=确定}"
+            Style="{DynamicResource IconButton}" />
+            <Button Name="BtnCancel"
+            Width="80"
+            Height="36"
+            Margin="2,2,48,2"
+            Click="BtnCancel_Click"
+                    Background="AliceBlue"
+            Content="{language:SRT Key=WordItemEditor_Cancel_Text,
+                               DefaultValue=取消}"
+            Style="{DynamicResource IconButton}" />
+        </StackPanel>
+
+    </Grid>
+</UserControl>
