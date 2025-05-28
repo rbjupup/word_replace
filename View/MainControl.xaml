@@ -68,6 +68,21 @@
                                     Width="42" 
                                     Height="42" 
                                     Style="{DynamicResource IconButton}" 
+                                    ToolTip="{language:SRT Key=MainControl_Add_From_File_Text,DefaultValue=从文件导入}"
+                                    Command="{Binding WordListModel.AddByWholeExcelCommand}"
+                                    >
+                                <Border CornerRadius="5">
+                                    <Path Margin="3"
+                                      Data="{DynamicResource FileIcon}"
+                                      Fill="White"
+                                      Stretch="Fill"/>
+                                </Border>
+                            </Button>
+                            <Button Margin="10 16 15 0"
+                                    Background="{DynamicResource CommBackground}"
+                                    Width="42" 
+                                    Height="42" 
+                                    Style="{DynamicResource IconButton}" 
                                     ToolTip="{language:SRT Key=MainControl_Add_Manual_Text,DefaultValue=手动导入}"
                                     Command="{Binding WordListModel.AddFileManual}"
                                     >

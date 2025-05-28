@@ -115,9 +115,9 @@ namespace Model
                             wordItem.PhoneNumber = PhoneNumber;
                             string EmailAddress = (range.Cells[13, 2] as Excel.Range)?.Value2?.ToString()?.Trim();
                             wordItem.EmailAddress = EmailAddress;
-                            wordItem.StartTime = "2025/5/21";
-                            wordItem.StartTimeDMY = "2025/5/21";
-                            wordItem.EndTime = "2025/5/21";
+                            wordItem.StartTime = DateTime.Now.ToString("yyyy/MM/dd");
+                            wordItem.StartTimeDMY = DateTime.Now.AddYears(1).ToString("yyyy/MM/dd");
+                            wordItem.EndTime = DateTime.Now.ToString("yyyy/MM/dd");
                         }
                         catch
                         {

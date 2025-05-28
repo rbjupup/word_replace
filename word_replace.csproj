@@ -124,6 +124,7 @@
     <Compile Include="Core\UtilExtend.cs" />
     <Compile Include="Model\AutoParseProcess.cs" />
     <Compile Include="Model\WordChangeRules.cs" />
+    <Compile Include="Model\WordItemsLoadEditorModel.cs" />
     <Compile Include="Model\WordListItem.cs" />
     <Compile Include="Model\WordListModel.cs" />
     <Compile Include="Model\WordsReplaceModel.cs" />
@@ -136,6 +137,9 @@
     </Compile>
     <Compile Include="View\WordItemEditor.xaml.cs">
       <DependentUpon>WordItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WordItemFromWholeExcel.xaml.cs">
+      <DependentUpon>WordItemFromWholeExcel.xaml</DependentUpon>
     </Compile>
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
@@ -166,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WordItemEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WordItemFromWholeExcel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

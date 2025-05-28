@@ -16,6 +16,7 @@ using Language;
 using word_replace.View;
 using Controls;
 using BAI;
+using System.Threading.Tasks;
 
 
 namespace Model
@@ -139,6 +140,73 @@ namespace Model
                     }));
 
                 }));
+            }
+        }
+
+        private ICommand _AddByWholeExcelCommand; public ICommand AddByWholeExcelCommand
+        {
+            get
+            {
+                return _AddByWholeExcelCommand ?? (_AddByWholeExcelCommand = new RelayCommand(() =>
+                {
+                    var Window = new WordItemFromWholeExcel();
+                    var model = new WordItemsLoadEditorModel();
+                    Window.DataContext = model;
+                    var window = Window.CreateWindow(false, false);
+                    window.Width = 1080;
+                    window.Height = 760;
+                    if (window.ShowDialog() != true)
+                    {
+                        return;
+                    }
+                    App.Current.Dispatcher.BeginInvoke(new System.Action(() =>
+                    {
+                        //插入到列表里面
+                        for (int i = 0; i < model.LoadItems.Count; i++)
+                        {
+                            WaitForDealFiles.Add(model.LoadItems[i]);
+                        }
+                    }));
+                    //逐个开始处理
+                    Task.Run(() =>
+                    {
+                        try
+                        {
+                            var m_toolsFileDir = ConfigurationManager.AppSettings["AutoTransToolFolder"];
+                            foreach (var wordItem in model.LoadItems)
+                            {
+                                wordItem.SaveToFile(m_toolsFileDir);
+                                //等待转换器退出
+                                while (true)
+                                {
+                                    Process[] processes = Process.GetProcessesByName("文字替换软件定制版");
+                                    if (processes.Length > 0)
+                                    {
+                                        Thread.Sleep(500);
+                                    }
+                                    else
+                                    { break; }
+                                }
+                                Process.Start(m_toolsFileDir + "/文字替换软件定制版.exe");
+                                while (true)
+                                {
+                                    Process[] processes = Process.GetProcessesByName("文字替换软件定制版");
+                                    if (processes.Length > 0)
+                                    {
+                                        Thread.Sleep(500);
+                                    }
+                                    else
+                                    { break; }
+                                }
+                                wordItem.DealFinish = true;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"异常: {ex.Message}");
+                        }
+                    });
+            }));
             }
         }
 

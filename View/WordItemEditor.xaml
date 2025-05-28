@@ -8,6 +8,14 @@
              Background="White" 
              xmlns:language="clr-namespace:Language;assembly=Language"
              d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Theme/ThemeDefault.xaml" />
+                <ResourceDictionary Source="/Theme/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid Margin="20" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
@@ -106,15 +114,6 @@
             Grid.ColumnSpan="2"
             Orientation="Horizontal" HorizontalAlignment="Right"
                     Margin="10">
-            <Button Name="BtnOk"
-            Width="80"
-            Height="36"
-            Margin="2,2,24,2"
-            Click="BtnOk_Click"
-                    Background="AliceBlue"
-            Content="{language:SRT Key=WordItemEditor_OK_Text,
-                               DefaultValue=确定}"
-            Style="{DynamicResource IconButton}" />
             <Button Name="BtnCancel"
             Width="80"
             Height="36"
@@ -123,6 +122,15 @@
                     Background="AliceBlue"
             Content="{language:SRT Key=WordItemEditor_Cancel_Text,
                                DefaultValue=取消}"
+            Style="{DynamicResource IconButton}" />
+            <Button Name="BtnOk"
+            Width="80"
+            Height="36"
+            Margin="2,2,24,2"
+            Click="BtnOk_Click"
+                    Background="AliceBlue"
+            Content="{language:SRT Key=WordItemEditor_OK_Text,
+                               DefaultValue=确定}"
             Style="{DynamicResource IconButton}" />
         </StackPanel>
 

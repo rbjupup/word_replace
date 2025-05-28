@@ -1,0 +1,184 @@
+﻿<UserControl x:Class="word_replace.View.WordItemFromWholeExcel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:word_replace.View"
+             mc:Ignorable="d" 
+             Background="Transparent"
+             xmlns:language="clr-namespace:Language;assembly=Language"
+             d:DesignHeight="1200" d:DesignWidth="1080">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Theme/ThemeDefault.xaml" />
+                <ResourceDictionary Source="/Theme/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border CornerRadius="0 0 10 10" Background="White"  >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="0">
+                <TextBlock 
+                    Margin="16 20 0 14"
+                    FontSize="16"
+                    Foreground="#212121"
+                    Text="{language:SRT Key=WordItemFromWholeExcel_Base_Message_Text,DefaultValue=基本信息}"/>
+                <Border CornerRadius="12" Background="#F9FAFB" Height="72" Margin="16 0 26 0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock 
+                            FontSize="14"
+                            Foreground="#616161"
+                            Margin="16 26 0 26"
+                            Text="{language:SRT Key=WordItemFromWholeExcel_File_Name_Text,DefaultValue=文件名}"/>
+                        <TextBox 
+                            Text="{Binding FileName,Mode=TwoWay}"
+                            Margin="20 16 0 16"
+                            Width="214" Height="40"/>
+                        <Button
+                            Background="#E5EEFA"
+                            Style="{DynamicResource IconButton}" 
+                            ToolTip="{language:SRT Key=MainControl_Select_File_Text,DefaultValue=选择文件}"
+                            Command="{Binding SelectFile}"
+                            Margin="20 16 0 16"
+                            Width="40" Height="40">
+                            <Border CornerRadius="5">
+                                <Path Margin="3"
+                                      Data="{DynamicResource CheckInFile}"
+                                      Fill="White"
+                                      Stretch="Fill"/>
+                            </Border>
+                        </Button>
+                        <TextBlock 
+                            FontSize="14"
+                            Foreground="#616161"
+                            Margin="16 26 0 26"
+                            Text="{language:SRT Key=WordItemFromWholeExcel_Start_Line_Text,DefaultValue=起始列}"/>
+                         <TextBox 
+                             Text="{Binding StartCount}"
+                            Margin="20 16 0 16"
+                            Width="100" Height="40"/>
+                        <TextBlock 
+                            FontSize="14"
+                            Foreground="#616161"
+                            Margin="16 26 0 26"
+                            Text="{language:SRT Key=WordItemFromWholeExcel_End_Line_Text,DefaultValue=结束列}"/>
+                        <TextBox 
+                             Text="{Binding EndCount}"
+                            Margin="20 16 0 16"
+                            Width="100" Height="40"/>
+                        <Button
+                            Background="#E5EEFA"
+                            Style="{DynamicResource IconButton}" 
+                            ToolTip="{language:SRT Key=MainControl_Start_Load_Text,DefaultValue=开始载入}"
+                            Command="{Binding LoadData}"
+                            Margin="20 16 0 16"
+                            Width="40" Height="40">
+                            <Border CornerRadius="5">
+                                <Path Margin="3"
+                                      Data="{DynamicResource Run}"
+                                      Fill="White"
+                                      Stretch="Fill"/>
+                            </Border>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock 
+                Margin="16 20 0 14"
+                FontSize="16"
+                Foreground="#212121"
+                Text="{language:SRT Key=WordItemFromWholeExcel_Data_Load_Text,DefaultValue=载入数据}"/>
+
+                <Border CornerRadius="12" Background="#F9FAFB" Height="400" Margin="16 0 26 0">
+                    <DataGrid ItemsSource="{Binding LoadItems}"
+                                  Style="{DynamicResource ListMain}" Margin="16">
+                        <DataGrid.ColumnHeaderStyle >
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Height" Value="43"/>
+                                <Setter Property="Background" Value="#E5EEFA"/>
+                                <Setter Property="Foreground" Value="#2F80ED"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="BorderBrush" Value="#ECEFF1"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.RowStyle>
+                            <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="DataGridRow">
+                                <Setter Property="Background" Value="{Binding Background}" />
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter Property="Height" Value="43"/>
+                                <Setter Property="FontSize" Value="17"/>
+                                <EventSetter Event="MouseDoubleClick" Handler="OnDataGridMouseDoubleClick" />
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*"
+                                            Binding="{Binding CompanyName}"
+                                            Header="{language:SRT DefaultValue=公司名称,Key=MainControl_Company_Name_Text}" />
+                            <DataGridTextColumn Width="100"
+                                            Binding="{Binding CompanyLegalPerson}"
+                                            Header="{language:SRT DefaultValue=法人名称,Key=MainControl_UserName_Text}" />
+                            <DataGridTextColumn Width="120"
+                                            Binding="{Binding PhoneNumber}"
+                                            Header="{language:SRT DefaultValue=手机号码,Key=MainControl_PhoneNumber_Text}" />
+                            <DataGridTextColumn Width="180"
+                                            Binding="{Binding EmailAddress}"
+                                            Header="{language:SRT DefaultValue=邮箱,Key=MainControl_Email_Text}" />
+                            <DataGridTextColumn Width="100"
+                                            Binding="{Binding ComapanyAddreess}"
+                                            Header="{language:SRT DefaultValue=地址,Key=MainControl_Address_Text}" />
+                            <DataGridTextColumn Width="100"
+                                            Binding="{Binding StartTime}"
+                                            Header="{language:SRT DefaultValue=开始时间,Key=MainControl_StartTime_Text}" />
+                            <DataGridTextColumn Width="100"
+                                            Binding="{Binding EndTime}"
+                                            Header="{language:SRT DefaultValue=结束时间,Key=MainControl_EndTime_Text}" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button
+                    Background="White"
+                    Style="{DynamicResource IconButton}" 
+                    ToolTip="{language:SRT Key=MainControl_Select_File_Text,DefaultValue=选择文件}"
+                    Click="BtnCancel_Click"
+                    Margin="20 16 0 16"
+                    Width="160" Height="44">
+                    <Border BorderThickness="2" BorderBrush="#90A4AE" 
+                            CornerRadius="8"
+                            Width="160" Height="44">
+                        <TextBlock Text="{language:SRT Key=MainControl_Cancel_Button_Text,DefaultValue=取消}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Border>
+                </Button>
+                <Button
+                    Style="{DynamicResource IconButton}" 
+                    ToolTip="{language:SRT Key=MainControl_Select_File_Text,DefaultValue=选择文件}"
+                    Click="BtnOk"
+                    Margin="20 16 0 16"
+                    Width="160" Height="44">
+                    <Border BorderThickness="0" BorderBrush="#90A4AE" 
+                            Background="{DynamicResource CommBackground}"
+                            CornerRadius="8"
+                            Width="160" Height="44">
+                        <TextBlock Foreground="{DynamicResource CommForeground}" Text="{language:SRT Key=MainControl_OK_Button_Text,DefaultValue=确认}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Border>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

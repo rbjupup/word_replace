@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Controls"
              mc:Ignorable="d" 
-			 Background="{DynamicResource CommBackground}"
+			 Background="Transparent"
              d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -15,9 +15,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-	<Border BorderBrush="{DynamicResource WindowBoardBrush}"
+    <Border BorderBrush="{DynamicResource WindowBoardBrush}" Background="{DynamicResource CommBackground}"
             BorderThickness="1"
-            CornerRadius="5">
+            CornerRadius="10">
 		<Grid Margin="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
@@ -25,6 +25,7 @@
 			</Grid.RowDefinitions>
 			<Border Margin="0"
                     Background="{DynamicResource CommBackground}"
+                    CornerRadius="10"
                     MouseLeftButtonDown="OnBorderMouseLeftButtonDown">
 				<StackPanel x:Name="ButtonPanel"
                             Margin="6,2,6,2"
@@ -129,6 +130,7 @@
 			</Border>
 
 			<Border Grid.Row="1" x:Name="BaseBorder"
+                    CornerRadius="0 0 10 10"
                     Margin="0" Background="{DynamicResource CommBackground}"
                     >
 				<ContentPresenter x:Name="ContentPressenter"/>
